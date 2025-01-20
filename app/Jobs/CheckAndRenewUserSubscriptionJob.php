@@ -44,8 +44,10 @@ class CheckAndRenewUserSubscriptionJob implements ShouldQueue
                 $userSubscription->status = Subscription::STATUS_INACTIVE;
                 Log::info("User subscription #{$userSubscription->user_id} became inactive because more than 30 days have passed since the start.");
                 $userSubscription->save();
+                return;
             }
 
+            return;
         }
 
         $userSubscription->start_at = Carbon::now();
